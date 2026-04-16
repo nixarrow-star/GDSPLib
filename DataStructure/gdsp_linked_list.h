@@ -44,14 +44,6 @@ TYPE *NAME##_gdsp_linked_list_back(NAME##_gdsp_linked_list *list);              
 TYPE *NAME##_gdsp_linked_list_get_at(NAME##_gdsp_linked_list *list,               \
                                      size_t index);                               \
                                                                                   \
-const TYPE *NAME##_gdsp_linked_list_front_const(                                  \
-    const NAME##_gdsp_linked_list *list);                                         \
-const TYPE *NAME##_gdsp_linked_list_back_const(                                   \
-    const NAME##_gdsp_linked_list *list);                                         \
-const TYPE *NAME##_gdsp_linked_list_get_at_const(                                 \
-    const NAME##_gdsp_linked_list *list,                                          \
-    size_t index);                                                                \
-                                                                                  \
 bool NAME##_gdsp_linked_list_pop_front(NAME##_gdsp_linked_list *list,             \
                                        TYPE *out_data);                           \
 bool NAME##_gdsp_linked_list_pop_back(NAME##_gdsp_linked_list *list,              \
@@ -64,9 +56,9 @@ bool NAME##_gdsp_linked_list_remove_at(NAME##_gdsp_linked_list *list,           
                                        size_t index);
 
 /* =========================================================
-   DEFINING THE LINKED LIST (to use in .c)
+   BUILDING LINKED LIST FUNCTIONS (to use in .c)
    ========================================================= */
-#define DEFINE_GDSP_LINKED_LIST(TYPE, NAME)                                                        \
+#define BUILD_GDSP_LINKED_LIST(TYPE, NAME)                                                         \
                                                                                                    \
 NAME##_gdsp_linked_list *NAME##_gdsp_linked_list_create(                                           \
     void (*destroy_data)(TYPE *)) {                                                                \
@@ -222,37 +214,6 @@ TYPE *NAME##_gdsp_linked_list_get_at(NAME##_gdsp_linked_list *list,             
     }                                                                             \
                                                                                   \
     NAME##_gdsp_linked_list_node *current = list->head;                           \
-    while (index > 0) {                                                           \
-        current = current->next;                                                  \
-        index--;                                                                  \
-    }                                                                             \
-    return &current->data;                                                        \
-}                                                                                 \
-                                                                                  \
-const TYPE *NAME##_gdsp_linked_list_front_const(                                  \
-    const NAME##_gdsp_linked_list *list) {                                        \
-    if (!list || list->size == 0) {                                               \
-        return NULL;                                                              \
-    }                                                                             \
-    return &list->head->data;                                                     \
-}                                                                                 \
-                                                                                  \
-const TYPE *NAME##_gdsp_linked_list_back_const(                                   \
-    const NAME##_gdsp_linked_list *list) {                                        \
-    if (!list || list->size == 0) {                                               \
-        return NULL;                                                              \
-    }                                                                             \
-    return &list->tail->data;                                                     \
-}                                                                                 \
-                                                                                  \
-const TYPE *NAME##_gdsp_linked_list_get_at_const(                                 \
-    const NAME##_gdsp_linked_list *list,                                          \
-    size_t index) {                                                               \
-    if (!list || index >= list->size) {                                           \
-        return NULL;                                                              \
-    }                                                                             \
-                                                                                  \
-    const NAME##_gdsp_linked_list_node *current = list->head;                     \
     while (index > 0) {                                                           \
         current = current->next;                                                  \
         index--;                                                                  \
