@@ -1,4 +1,4 @@
-# GDSP — Generic Data Structures in Pure C
+# GDSP — Generic Data Structures Project
 
 > A lightweight, type-safe generic data structures library for C, built with macros.
 
