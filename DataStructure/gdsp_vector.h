@@ -53,7 +53,7 @@ bool NAME##_gdsp_vector_pop_at(NAME##_gdsp_vector *vector,          \
 /* =========================================================
    BUILDING THE VECTOR (to use in a .c)
    ========================================================= */
-#define BUILDING_GDSP_VECTOR(TYPE, NAME)                                                            \
+#define BUILD_GDSP_VECTOR(TYPE, NAME)                                                               \
                                                                                                     \
 NAME##_gdsp_vector *NAME##_gdsp_vector_create(                                                      \
     void (*destroy_data)(TYPE *)) {                                                                 \
